@@ -14,13 +14,20 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const uri = "mongodb://mongo_desafio-3:27017";
-    const client = new MongoClient(uri,
-        { useUnifiedTopology: true },);
+    const url = "mongodb://mongo_desafio-3:27017";
+    let db = '';
+    let collection = '';
     let results = {};
     try {
-        client.connect();
-        results = client.db('desafio-3').collection('alunos').find({});
+        const client = new MongoClient(url);
+        client.connect(function(err){
+            if(err) console.log(err)
+            db = client.db('desafio-3')
+        });
+        results = collection.find({}).toArray(err,docs){
+            if(err) console.log(err);
+            return(docs);
+        }
     } catch (e) {
         console.error(e);
     } finally {
