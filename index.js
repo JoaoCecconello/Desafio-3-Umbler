@@ -14,7 +14,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const uri = "mongodb+srv://mongo&#x5f;desafio-3:27017/test?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://mongo&#x5f;desafio-3:27017/test?retryWrites=true&w=majority&tls=false";
     const client = new MongoClient(uri);
     let results = {};
     try {
