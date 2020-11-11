@@ -14,21 +14,22 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const uri = "mongodb+srv://mongo_desafio-3:27017/?w=majority";
+    const uri = "mongodb+srv://mongo_desafio-3:27017/test?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
+    let results = {};
     try {
         await client.connect();
-        results = client.db("desafio-3").collection("alunos").find({});
-        return results;
+        results = client.db("desafio-3").collection("alunos").find();
     } catch (e) {
         console.error(e);
     } finally {
         await client.close();
     }
+    return results;
 }
 var dbResults = 0;
 app.use('/alunos', (req, res, next) => {
-    //dbResults = DBConnection();
+    dbResults = DBConnection();
     next();
 });
 
