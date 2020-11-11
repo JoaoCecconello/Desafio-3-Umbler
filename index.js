@@ -1,8 +1,6 @@
 const express = require("express")
 const app = express();
 
-const alunosRoute = require("./routes/alunos")
-
 app.use((req, res, next) => {
     if ((req.headers["x-forwarded-proto"] || "").endsWith("http"))
         res.redirect(`https://${req.headers.host}${req.url}`);
@@ -12,7 +10,27 @@ app.use((req, res, next) => {
 
 app.get('/' , function(req,res){ res.send('Hello World') })
 
-app.get('/alunos' , alunosRoute);
+
+var alunos = null;
+app.use('/alunos', (req, res, next) => {
+
+    const uri = "mongodb+srv://mongo_desafio-3:27017/?w=majority";
+    const client = new MongoClient(uri);
+    try {
+        client.connect();
+        alunos = client.db("desafio-3").collection("alunos").find({});
+    } catch (e) {
+        console.error(e);
+    } finally {
+        client.close();
+    }
+
+    next();
+});
+
+app.get('/alunos', async function(req,res){
+    res.send(alunos)
+});
 
 var serverTime;
 app.use('/hora', function (req, res, next) {
