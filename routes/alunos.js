@@ -14,9 +14,9 @@ mongoose.connect('mongodb:mongo_desafio-3:27017', {
 });
 
 
-router.get('/', async function(req,res){
+router.get('/', function(req,res){
     try {
-        await Alunos.find({}).then((alunos) => {
+        Alunos.find({}).then((alunos) => {
             return res.json(alunos)
         })
     } catch (err) {
