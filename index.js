@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 
 app.get('/' , function(req,res){ res.send('Hello World') })
 
-app.get('/alunos' , alunosRoute)
+app.get('/alunos' , alunosRoute);
 
 var serverTime;
 app.use('/hora', function (req, res, next) {
