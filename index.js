@@ -14,7 +14,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const uri = "mongodb://mongo_desafio-3:27017";
+    const uri = "mongodb://nephiladb:desafio3DB@mongo_desafio-3:27017";
     const client = new MongoClient(uri,
         { useUnifiedTopology: true },
         (err, connection) => {
