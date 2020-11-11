@@ -25,11 +25,11 @@ async function DBConnection(){
     try {
         await client.connect();
         results = client.db('desafio-3').collection("alunos").find({"Nome":"Carol"});
+        await results.forEach(element => console.log(doc));
     } catch (e) {
         console.error(e);
     } finally {
         await client.close();
-        console.log(results)
     }
     return results;
 }
@@ -40,7 +40,6 @@ app.use('/alunos', (req, res, next) => {
 });
 
 app.get('/alunos', function(req,res){
-    console.log(dbResults);
     res.json(dbResults)
 });
 
