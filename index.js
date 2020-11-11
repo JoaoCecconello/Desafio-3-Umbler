@@ -18,22 +18,22 @@ async function DBConnection(){
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        alunos = client.db("desafio-3").collection("alunos").find({});
-        return alunos;
+        results = client.db("desafio-3").collection("alunos").find({});
+        return results;
     } catch (e) {
         console.error(e);
     } finally {
         await client.close();
     }
 }
-var alunos = null
+var dbResults = null
 app.use('/alunos', (req, res, next) => {
-    alunos = DBConnection();
+    //dbResults = DBConnection();
     next();
 });
 
 app.get('/alunos', function(req,res){
-    res.send(alunos)
+    res.send(dbResults)
 });
 
 var serverTime;
