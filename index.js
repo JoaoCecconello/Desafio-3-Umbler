@@ -14,12 +14,17 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const uri = "mongodb+srv://nephiladb:desafio3DB@geonosis.mongodb.umbler.com:35888/test?retryWrites=true&w=majority&tls=false";
-    const client = new MongoClient(uri);
+    const uri = "mongodb://nephiladb:desafio3DB@mongo_desafio-3:27017";
+    const client = new MongoClient(uri,
+        { useUnifiedTopology: true },
+        (err, connection) => {
+            if(err) return console.log(err)
+            global.connection = connection.db('desafio-3')
+        });
     let results = {};
     try {
         await client.connect();
-        results = client.db("desafio-3").collection("alunos").find();
+        results = client.collection("alunos").find();
     } catch (e) {
         console.error(e);
     } finally {
