@@ -19,9 +19,8 @@ async function DBConnection(){
         { useUnifiedTopology: true },);
     let results = {};
     try {
-        await client.connect();
+        client.connect();
         results = client.db('desafio-3').collection('alunos').find({});
-        await results.forEach(element => console.log(doc));
     } catch (e) {
         console.error(e);
     } finally {
