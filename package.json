@@ -9,6 +9,6 @@
   "author": "João Cecconello",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "Express": "^4.17.1"
   }
 }

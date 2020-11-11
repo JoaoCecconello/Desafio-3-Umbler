@@ -13,3 +13,8 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 app.get('/hora' , function(req,res){ res.send('Hora') })
 
 app.get('/alunos' , function(req,res){ res.send('Alunos') })
+
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log('%s', port);
+});
