@@ -26,7 +26,7 @@ async function DBConnection(){
         await client.close();
     }
 }
-var dbResults = null
+var dbResults = 0;
 app.use('/alunos', (req, res, next) => {
     //dbResults = DBConnection();
     next();
