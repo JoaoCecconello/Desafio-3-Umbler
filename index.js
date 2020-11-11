@@ -24,12 +24,9 @@ async function DBConnection(){
             if(err) console.log(err)
             db = client.db('desafio-3')
         });
-        results = collection.find({}).toArray(err,docs){
-            if(err) console.log(err);
-            return(docs);
-        }
-    } catch (e) {
-        console.error(e);
+        results = collection.find({});
+    } catch (err) {
+        console.error(err);
     } finally {
         await client.close();
     }
