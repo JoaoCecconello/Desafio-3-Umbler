@@ -16,7 +16,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 var alunos = null;
 app.use('/alunos', (req, res, next) => {
 
-    const uri = "mongodb+srv://mongo_desafio-3:27017/?w=majority";
+    const uri = "mongodb+srv://nephiladb:desafio3DB@mongo_desafio-3:27017/?w=majority";
     const client = new MongoClient(uri);
     try {
         client.connect();
