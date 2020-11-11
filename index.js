@@ -13,24 +13,26 @@ app.use((req, res, next) => {
 app.get('/' , function(req,res){ res.send('Hello World') })
 
 
-var alunos = null;
-app.use('/alunos', (req, res, next) => {
-
-    const uri = "mongodb+srv://nephiladb:desafio3DB@mongo_desafio-3:27017/?w=majority";
+async function DBConnection(){
+    const uri = "mongodb+srv://mongo_desafio-3:27017/?w=majority";
     const client = new MongoClient(uri);
     try {
-        client.connect();
+        await client.connect();
         alunos = client.db("desafio-3").collection("alunos").find({});
+        return alunos;
     } catch (e) {
         console.error(e);
     } finally {
-        client.close();
+        await client.close();
     }
-
+}
+var alunos = null
+app.use('/alunos', (req, res, next) => {
+    alunos = DBConnection();
     next();
 });
 
-app.get('/alunos', async function(req,res){
+app.get('/alunos', function(req,res){
     res.send(alunos)
 });
 
