@@ -8,9 +8,18 @@ app.use((req, res, next) => {
         next();
 });
 
+var serverTime;
+app.use(function (req, res, next) {
+    let date = new Date;
+    serverTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    next();
+});
+
 app.get('/' , function(req,res){ res.send('Hello World') })
 
-app.get('/hora' , function(req,res){ res.send('Hora') })
+app.get('/hora' , function(req,res){
+    res.send(serverTime)
+})
 
 app.get('/alunos' , function(req,res){ res.send('Alunos') })
 
