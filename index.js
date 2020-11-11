@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express();
 
+const {MongoClient} = require('mongodb')
+
 app.use((req, res, next) => {
     if ((req.headers["x-forwarded-proto"] || "").endsWith("http"))
         res.redirect(`https://${req.headers.host}${req.url}`);
