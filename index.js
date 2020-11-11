@@ -24,7 +24,7 @@ async function DBConnection(){
     let results = {};
     try {
         await client.connect();
-        results = client.collection("alunos").find();
+        results = client.db('desafio-3').collection("alunos").find();
     } catch (e) {
         console.error(e);
     } finally {
