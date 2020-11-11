@@ -9,10 +9,10 @@ router.get('/alunos', async function(req,res){
     try {
         await client.connect();
         const alunos = await client.db("desafio-3").collection("alunos").find({});
-        res.send(alunos);
     } catch (e) {
         console.error(e);
     } finally {
+        res.send(alunos);
         await client.close();
     }
 });
