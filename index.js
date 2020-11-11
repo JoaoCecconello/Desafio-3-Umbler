@@ -16,15 +16,11 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 async function DBConnection(){
     const uri = "mongodb://mongo_desafio-3:27017";
     const client = new MongoClient(uri,
-        { useUnifiedTopology: true },
-        (err, connection) => {
-            if(err) return console.log(err)
-            global.connection = connection.db('desafio-3')
-        });
+        { useUnifiedTopology: true },);
     let results = {};
     try {
         await client.connect();
-        results = client.db('desafio-3').collection("alunos").find({});
+        results = client.db('desafio-3').collection('alunos').find({});
         await results.forEach(element => console.log(doc));
     } catch (e) {
         console.error(e);
