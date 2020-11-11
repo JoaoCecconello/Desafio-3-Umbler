@@ -29,6 +29,7 @@ async function DBConnection(){
         console.error(e);
     } finally {
         await client.close();
+        console.log(results)
     }
     return results;
 }
