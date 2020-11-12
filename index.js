@@ -17,7 +17,7 @@ async function DBConnection(){
     const url = "mongodb://mongo_desafio-3:27017";
     let results = {};
     try {
-        const client = new MongoClient(url);
+        const client = new MongoClient(url, { useUnifiedTopology: true });
         await client.connect();
         results = client.db('desafio-3').collection('alunos').find({});
     } catch (err) {
