@@ -16,7 +16,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 async function DBConnection(){
     const url = "mongodb://nephiladb:desafio3DB@mongo_desafio-3:27017/?authSource=desafio-3";
     const client = new MongoClient(url, { useUnifiedTopology: true });
-    let allResults = {};
+    let allResults = '';
     try {
         await client.connect();
         console.log('MongoDB connection opened')
