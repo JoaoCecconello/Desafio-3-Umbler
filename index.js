@@ -21,7 +21,9 @@ async function DBConnection(){
         await client.connect();
         console.log('MongoDB connection opened')
         results = client.db('desafio-3').collection('alunos').find({});
-        allResults = await results.toArray();
+        allResults = await results.forEach(element => {
+            console.log(element);
+        });
     } catch (err) {
         console.error(err);
     } finally {
