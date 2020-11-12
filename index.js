@@ -21,9 +21,7 @@ async function DBConnection(){
         await client.connect();
         console.log('MongoDB connection opened')
         results = client.db('desafio-3').collection('alunos').find({});
-        allResults = await results.toArray().forEach(element => {
-            allResults+={Nome: element.Nome, Idade: element.Idade}
-        });
+        allResults = await results.toArray();
     } catch (err) {
         console.error(err);
     } finally {
@@ -34,8 +32,8 @@ async function DBConnection(){
     return allResults;
 }
 
-app.get('/alunos', function(req,res){
-    res.send(DBConnection())
+app.get('/alunos', async function(req,res){
+    res.send(await DBConnection())
 });
 
 var serverTime;
