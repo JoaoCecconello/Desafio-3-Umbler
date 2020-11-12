@@ -25,14 +25,14 @@ async function DBConnection(){
         console.error(err);
     } finally {
         await client.close();
+        console.log(allResults)
     }
     return allResults;
 }
 var dbResults = 0;
 app.use('/alunos', (req, res, next) => {
     dbResults = DBConnection();
-    if(dbResults)
-        next();
+    next();
 });
 
 app.get('/alunos', function(req,res){
