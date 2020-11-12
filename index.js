@@ -22,7 +22,7 @@ async function DBConnection(){
         console.log('MongoDB connection opened')
         results = client.db('desafio-3').collection('alunos').find({});
         allResults = await results.forEach(element => {
-            return allResults+={Nome: element.Nome, Idade: element.Idade}
+            allResults+={Nome: element.Nome, Idade: element.Idade}
         });
     } catch (err) {
         console.error(err);
