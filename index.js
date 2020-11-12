@@ -28,6 +28,7 @@ async function DBConnection(){
         console.error(err);
     } finally {
         await client.close();
+        console.log(allResults)
         console.log('MongoDB connection closed')
     }
     return allResults;
