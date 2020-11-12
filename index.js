@@ -14,11 +14,11 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const url = "mongodb://mongo_desafio-3:27017";
+    const url = "mongodb+srv://mongo_desafio-3:27017";
     let results = {};
     try {
         const client = new MongoClient(url);
-        client.connect();
+        await client.connect();
         results = client.db('desafio-3').collection('alunos').find({});
     } catch (err) {
         console.error(err);
