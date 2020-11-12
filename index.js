@@ -14,7 +14,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const url = "mongodb+srv://nephiladb:desafio3DB@geonosis.mongodb.umbler.com:35888/?poolSize=20&w=majority";
+    const url = "mongodb://nephiladb:desafio3DB@geonosis.mongodb.umbler.com:35888";
     const client = new MongoClient(url, { useUnifiedTopology: true });
     let allResults = {};
     try {
