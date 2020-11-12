@@ -16,21 +16,23 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 async function DBConnection(){
     const url = "mongodb://mongo_desafio-3:27017";
     const client = new MongoClient(url, { useUnifiedTopology: true });
-    let results = {};
+    let allResults = {};
     try {
         await client.connect();
         results = client.db('desafio-3').collection('alunos').find({});
+        allResults = await results.toArray();
     } catch (err) {
         console.error(err);
     } finally {
         await client.close();
     }
-    return results;
+    return allResults;
 }
 var dbResults = 0;
 app.use('/alunos', (req, res, next) => {
     dbResults = DBConnection();
-    next();
+    if(dbResults)
+        next();
 });
 
 app.get('/alunos', function(req,res){
