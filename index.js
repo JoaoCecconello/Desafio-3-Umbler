@@ -36,7 +36,7 @@ app.use('/alunos', (req, res, next) => {
 });
 
 app.get('/alunos', function(req,res){
-    res.json(dbResults)
+    res.send(dbResults)
 });
 
 var serverTime;
