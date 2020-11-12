@@ -22,7 +22,7 @@ async function DBConnection(){
         console.log('MongoDB connection opened')
         results = client.db('desafio-3').collection('alunos').find({});
         await results.forEach(element => {
-            allResults += "Nome: "+element.Nome+" Idade: "+element.Idade+"\n";
+            allResults += "<p>Nome: "+element.Nome+" Idade: "+element.Idade+"</p>";
         });
     } catch (err) {
         console.error(err);
