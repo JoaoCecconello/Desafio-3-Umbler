@@ -14,7 +14,7 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 
 async function DBConnection(){
-    const url = "mongodb://nephiladb:desafio3DB@geonosis.mongodb.umbler.com:35888/?authSource=admin";
+    const url = "mongodb://mongo_desafio-3:27017/?authSource=admin";
     const client = new MongoClient(url, { useUnifiedTopology: true });
     let allResults = {};
     try {
