@@ -19,24 +19,22 @@ async function DBConnection(){
     let allResults = {};
     try {
         await client.connect();
+        console.log('MongoDB connection opened')
         results = client.db('desafio-3').collection('alunos').find({});
-        allResults = await results.toArray();
+        allResults = await results.forEach(element => {
+            return allResults+={Nome: results.Nome, Idade: results.Idade}
+        });
     } catch (err) {
         console.error(err);
     } finally {
         await client.close();
-        console.log(allResults)
+        console.log('MongoDB connection closed')
     }
     return allResults;
 }
-var dbResults = 0;
-app.use('/alunos', (req, res, next) => {
-    dbResults = DBConnection();
-    next();
-});
 
 app.get('/alunos', function(req,res){
-    res.send(dbResults)
+    res.send(DBConnection())
 });
 
 var serverTime;
