@@ -15,16 +15,11 @@ app.get('/' , function(req,res){ res.send('Hello World') })
 
 async function DBConnection(){
     const url = "mongodb://mongo_desafio-3:27017";
-    let db = '';
-    let collection = '';
     let results = {};
     try {
         const client = new MongoClient(url);
-        client.connect(function(err){
-            if(err) console.log(err)
-            db = client.db('desafio-3')
-        });
-        results = collection.find({});
+        client.connect();
+        results = client.db('desafio-3').collection('alunos').find({});
     } catch (err) {
         console.error(err);
     } finally {
